@@ -6,9 +6,8 @@ class Talker(Node):
     def __init__(self):
         super().__init__("talker")
         self.pub = self.create_publisher(Int16, "countup", 10)
-        self.create_timer(0.5, self.cb)
+        self.create_timer(0.5,self.cb)
         self.n = 0
-
     def cb(self):
         msg = Int16()
         msg.data = self.n
