@@ -18,7 +18,7 @@ git clone https://github.com/ssssben/7-times.git
 cd ros2_ws
 ```
 
-##使い方
+## 使い方
 はじめにビルドをしてください
 ```
 colcon build
@@ -48,26 +48,21 @@ ros2 run mypkg listener
 
 ```
 [listener-2] [INFO] [1735363374.229580217] [listener]: 7倍した結果: 0
-[talker-1] [INFO] [1735363374.229580212] [talker]: 整数: '0'
-[talker-1] [INFO] [1735363374.717171970] [talker]: 整数: '1'
 [listener-2] [INFO] [1735363374.717691927] [listener]: 7倍した結果: 7
-[talker-1] [INFO] [1735363375.217392375] [talker]: 整数: '2'
 [listener-2] [INFO] [1735363375.217817340] [listener]: 7倍した結果: 14
-[talker-1] [INFO] [1735363375.717274364] [talker]: 整数: '3'
 [listener-2] [INFO] [1735363375.717634469] [listener]: 7倍した結果: 21
-[talker-1] [INFO] [1735363376.217181308] [talker]: 整数: '4'
 [listener-2] [INFO] [1735363376.217540069] [listener]: 7倍した結果: 28
 ```
 
-#動作環境
+# 動作環境
 ## 必要な環境
 
 - **ROS 2 (Foxy以降)** がインストールされていること。
 - **Python 3.8以上** (ROS 2のPython APIを使用)。
 - **std_msgsパッケージ** (ROS 2の`Int16`メッセージ型が含まれている)。
-##テスト環境
+## テスト環境
 - ubuntu-20.04
-##ライセンス
+## ライセンス
 - このリポジトリはBSD-3-Clauseライセンスのもとで公開されています。
-##Copyright
+## Copyright
 © 2024 Ben Fang
