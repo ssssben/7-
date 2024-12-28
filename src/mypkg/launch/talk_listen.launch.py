@@ -13,7 +13,7 @@ def generate_launch_description():
     listener = launch_ros.actions.Node(
         package = 'mypkg',
         executable = 'listener',
-        output = 'screen',
+        output = 'screen', #標準出力に表示するため
     )
 
     return launch.LaunchDescription([talker, listener])
