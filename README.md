@@ -15,7 +15,7 @@
 
 ```bash
 git clone https://github.com/ssssben/7-times.git
-cd ros2_ws
+cd ros2_7times_ws
 ```
 
 ## 使い方
@@ -25,7 +25,7 @@ colcon build
 ```
 そして環境をソースしてください
 ```
-source ~/ros2_ws/install/setup.bash
+source ~/ros2_7times_ws/install/setup.bash
 ```
 ターミナルを二つ開き
 ターミナル1でTalkerノードを実行して、整数を発行します
