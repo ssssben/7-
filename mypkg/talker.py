@@ -1,23 +1,33 @@
-# SPDX-FileCopyrightText: 2024 Ben
-# SPDX-License-Identifier: BSD-3-Clause
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Int16
+from std_msgs.msg import Int32
+import psutil
 
 class Talker(Node):
     def __init__(self):
-        super().__init__("talker")
-        self.pub = self.create_publisher(Int16, "countup", 10)
-        self.create_timer(0.5,self.cb)
-        self.n = 0
-    def cb(self):
-        msg = Int16()
-        msg.data = self.n
-        self.pub.publish(msg)
-        self.get_logger().info(f"整数: '{msg.data}'")
-        self.n += 1
+        super().__init__('talker')
+        self.pub = self.create_publisher(Int32, 'battery_status', 10)
+        self.create_timer(1.0, self.timer_callback)
+
+    def timer_callback(self):
+        battery = psutil.sensors_battery()
+        if battery:
+            percent = battery.percent
+            self.get_logger().info(f"Battery level: {percent}%")
+            msg = Int32()
+            msg.data = int(percent)
+            self.pub.publish(msg)
+        else:
+            self.get_logger().warn("Battery information not available.")
 
 def main():
     rclpy.init()
     node = Talker()
     rclpy.spin(node)
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    try:
+        main()
+    except Exception as e:
+        print(f"Error occurred: {e}")
