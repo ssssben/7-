@@ -1,0 +1,35 @@
+name: ROS 2 Battery Node Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up ROS 2
+        uses: ros-tooling/setup-ros@v0.3
+        with:
+          required-ros-distributions: humble
+
+      - name: Install dependencies
+        run: |
+          sudo apt update && sudo apt install -y acpi
+          vcs import src < .rosinstall || true
+
+      - name: Build workspace
+        run: |
+          source /opt/ros/$ROS_DISTRO/setup.bash
+          colcon build --symlink-install
+
+      - name: Run tests
+        run: |
+          source /opt/ros/$ROS_DISTRO/setup.bash
+          source install/setup.bash
+          ./src/charge_pkg/test.bash
